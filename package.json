@@ -16,6 +16,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+    ,"start": "nodemon server.js"
   },
   "devDependencies": {
     "body-parser": "^2.2.2",
