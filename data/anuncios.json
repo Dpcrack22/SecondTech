@@ -1,0 +1,38 @@
+[
+    {
+        "Titulo": "Lavadora",
+        "Categoria": "Electrodomésticos",
+        "Precio": 250,
+        "Estado": "disponible"
+    },
+    {
+        "Titulo": "Televisión",
+        "Categoria": "Electrodomésticos",
+        "Precio": 150,
+        "Estado": "disponible"
+    },
+    {
+        "Titulo": "Portátil",
+        "Categoria": "Electrodomésticos",
+        "Precio": 500,
+        "Estado": "disponible"
+    },
+    {
+        "Titulo": "Mueble de dormitorio",
+        "Categoria": "Mobiliario",
+        "Precio": 500,
+        "Estado": "disponible"
+    },
+    {
+        "Titulo": "Mueble de cocina",
+        "Categoria": "Mobiliario",
+        "Precio": 300,
+        "Estado": "disponible"
+    },
+    {
+        "Titulo": "Mueble de cocina",
+        "Categoria": "Mobiliario",
+        "Precio": 500,
+        "Estado": "disponible"
+    }
+]
