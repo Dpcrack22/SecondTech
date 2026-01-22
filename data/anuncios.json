@@ -1,38 +1,18 @@
 [
-    {
-        "Titulo": "Lavadora",
-        "Categoria": "Electrodomésticos",
-        "Precio": 250,
-        "Estado": "disponible"
-    },
-    {
-        "Titulo": "Televisión",
-        "Categoria": "Electrodomésticos",
-        "Precio": 150,
-        "Estado": "disponible"
-    },
-    {
-        "Titulo": "Portátil",
-        "Categoria": "Electrodomésticos",
-        "Precio": 500,
-        "Estado": "disponible"
-    },
-    {
-        "Titulo": "Mueble de dormitorio",
-        "Categoria": "Mobiliario",
-        "Precio": 500,
-        "Estado": "disponible"
-    },
-    {
-        "Titulo": "Mueble de cocina",
-        "Categoria": "Mobiliario",
-        "Precio": 300,
-        "Estado": "disponible"
-    },
-    {
-        "Titulo": "Mueble de cocina",
-        "Categoria": "Mobiliario",
-        "Precio": 500,
-        "Estado": "disponible"
-    }
+    { "Titulo": "iPhone 13", "Categoria": "movil", "Precio": 700, "Estado": "disponible" },
+    { "Titulo": "PlayStation 5", "Categoria": "consola", "Precio": 450, "Estado": "reservado" },
+    { "Titulo": "PC Gaming Ryzen", "Categoria": "pc", "Precio": 1200, "Estado": "vendido" },
+    { "Titulo": "Tarjeta Gráfica RTX 3070", "Categoria": "componentes", "Precio": 400, "Estado": "disponible" },
+    { "Titulo": "Teclado Mecánico", "Categoria": "otros", "Precio": 60, "Estado": "disponible" },
+    { "Titulo": "Nintendo Switch", "Categoria": "consola", "Precio": 250, "Estado": "vendido" },
+    { "Titulo": "Muñeca Barbie", "Categoria": "juguetes", "Precio": 20, "Estado": "disponible" },
+    { "Titulo": "Libro Harry Potter", "Categoria": "libros", "Precio": 15, "Estado": "reservado" },
+    { "Titulo": "Camiseta Real Madrid", "Categoria": "ropa", "Precio": 30, "Estado": "disponible" },
+    { "Titulo": "Sofá 3 plazas", "Categoria": "hogar", "Precio": 200, "Estado": "vendido" },
+    { "Titulo": "Bicicleta de montaña", "Categoria": "deportes", "Precio": 150, "Estado": "disponible" },
+    { "Titulo": "Lego Star Wars", "Categoria": "juguetes", "Precio": 50, "Estado": "reservado" },
+    { "Titulo": "Enciclopedia Larousse", "Categoria": "libros", "Precio": 40, "Estado": "disponible" },
+    { "Titulo": "Vestido de fiesta", "Categoria": "ropa", "Precio": 60, "Estado": "vendido" },
+    { "Titulo": "Mesa de comedor", "Categoria": "hogar", "Precio": 120, "Estado": "disponible" },
+    { "Titulo": "Raqueta de tenis", "Categoria": "deportes", "Precio": 35, "Estado": "reservado" }
 ]
