@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-const gamesRoute = require("./routes/games");
+const gamesRoute = require("./routes/routes");
 
 app.set("view engine", "ejs");
 app.set("views", "views");
