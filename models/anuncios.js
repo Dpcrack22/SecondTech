@@ -3,11 +3,12 @@ const path = require("path");
 const anunciosFilePath = path.join(__dirname, "..", "data", "anuncios.json");
 
 class Anuncio {
-    constructor(titulo, descripcion, precio, contacto) {
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.precio = precio;
-        this.contacto = contacto;
+    constructor(titulo, precio, categoria, estado) {
+        this.Titulo = titulo;
+        this.Precio = precio;
+        this.Categoria = categoria;
+        this.Estado = estado;
+        
     }
 
     save() {

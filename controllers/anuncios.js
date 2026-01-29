@@ -108,10 +108,29 @@ exports.getAnuncios = (req, res, next) => {
 			filtrados = filtrados.filter(a => a.Estado && a.Estado.toLowerCase() === estado.toLowerCase());
 		}
 		res.render("anuncios/lista", {
+            title: "Listado de Anuncios",
+			anuncios: resultado,
 			title: "Listado de Anuncios",
 			anuncios: filtrados,
 			categoria: categoria || '',
 			estado: estado || ''
 		});
 	});
+};
+
+// GET /anuncios/nuevo
+exports.getNuevoAnuncio = (req, res, next) => {
+    res.render("anuncios/nuevo", {title: "Nuevo Anuncio"});
+};
+
+// POST /anuncios/nuevo
+exports.postNuevoAnuncio = (req, res, next) => {
+	const anuncioNuevo = new Anuncio(
+		req.body.titulo,
+		req.body.precio,
+		req.body.categoria,
+		req.body.estado
+	);
+   	anuncioNuevo.save();
+    res.redirect("/anuncios");
 };
