@@ -1,0 +1,57 @@
+
+<%- include('../includes/header') %>
+<%- include('../includes/navigator') %>
+
+<h1>Listado de Anuncios</h1>
+
+<form method="get" action="/anuncios">
+  <label for="categoria">Categoría:</label>
+  <select name="categoria" id="categoria">
+    <option value="" <%= !categoria ? 'selected' : '' %>>Todas</option>
+    <option value="movil" <%= categoria === 'movil' ? 'selected' : '' %>>Móvil</option>
+    <option value="consola" <%= categoria === 'consola' ? 'selected' : '' %>>Consola</option>
+    <option value="pc" <%= categoria === 'pc' ? 'selected' : '' %>>PC</option>
+    <option value="componentes" <%= categoria === 'componentes' ? 'selected' : '' %>>Componentes</option>
+    <option value="juguetes" <%= categoria === 'juguetes' ? 'selected' : '' %>>Juguetes</option>
+    <option value="libros" <%= categoria === 'libros' ? 'selected' : '' %>>Libros</option>
+    <option value="ropa" <%= categoria === 'ropa' ? 'selected' : '' %>>Ropa</option>
+    <option value="hogar" <%= categoria === 'hogar' ? 'selected' : '' %>>Hogar</option>
+    <option value="deportes" <%= categoria === 'deportes' ? 'selected' : '' %>>Deportes</option>
+    <option value="otros" <%= categoria === 'otros' ? 'selected' : '' %>>Otros</option>
+  </select>
+  <label for="estado">Estado:</label>
+  <select name="estado" id="estado">
+    <option value="" <%= !estado ? 'selected' : '' %>>Todos</option>
+    <option value="disponible" <%= estado === 'disponible' ? 'selected' : '' %>>Disponible</option>
+    <option value="reservado" <%= estado === 'reservado' ? 'selected' : '' %>>Reservado</option>
+    <option value="vendido" <%= estado === 'vendido' ? 'selected' : '' %>>Vendido</option>
+  </select>
+  <button type="submit">Filtrar</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Categoría</th>
+      <th>Precio</th>
+      <th>Estado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if (anuncios.length === 0) { %>
+      <tr><td colspan="4">No hay anuncios para mostrar.</td></tr>
+    <% } %>
+    <% anuncios.forEach(function(anuncio) { %>
+      <tr>
+        <td><%= anuncio.Titulo %></td>
+        <td><%= anuncio.Categoria %></td>
+        <td><%= anuncio.Precio %> €</td>
+        <td><%= anuncio.Estado %></td>
+        <td><a href="/anuncios/<%= anuncio.id %>">Ver detalle</a></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('../includes/footer') %>
