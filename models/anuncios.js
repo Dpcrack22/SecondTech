@@ -43,7 +43,7 @@ class Anuncio {
             if (!err) {
                 anuncios = JSON.parse(data);
             }
-            const anuncio = anuncios[id];
+            const anuncio = anuncios.find(a => String(a.id) === String(id));
             return callback(anuncio);
         });
     }
@@ -54,12 +54,15 @@ class Anuncio {
             if (!err) {
                 anuncios = JSON.parse(data);
             }
-            anuncios.splice(id, 1);
-            fs.writeFile(anunciosFilePath, JSON.stringify(anuncios), (err) => {
-                if (err) {
-                    console.error("Error deleting anuncio:", err);
-                }
-            });
+            const index = anuncios.findIndex(a => String(a.id) === String(id));
+            if (index !== -1) {
+                anuncios.splice(index, 1);
+                fs.writeFile(anunciosFilePath, JSON.stringify(anuncios), (err) => {
+                    if (err) {
+                        console.error("Error deleting anuncio:", err);
+                    }
+                });
+            }
         });
     }
 }

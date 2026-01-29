@@ -33,4 +33,10 @@ app.set("views", path.join(__dirname, "views"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(anuncios);
 
+
+// Middleware para página 404
+app.use((req, res, next) => {
+	res.status(404).render('404', { title: 'Página no encontrada' });
+});
+
 app.listen(3000, () => console.log("Servidor en http://localhost:3000"));
