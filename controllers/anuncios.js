@@ -1,3 +1,89 @@
+// POST /anuncios/:id/cambiar-estado
+exports.postCambiarEstado = (req, res, next) => {
+	const id = req.params.id;
+	const nuevoEstado = req.body.estado;
+	Anuncio.getAll((anuncios) => {
+		const idx = anuncios.findIndex(a => String(a.id) === String(id));
+		if (idx === -1) {
+			return res.status(404).send('Anuncio no encontrado');
+		}
+		anuncios[idx].Estado = nuevoEstado;
+		const fs = require('fs');
+		const path = require('path');
+		const anunciosFilePath = path.join(__dirname, "..", "data", "anuncios.json");
+		fs.writeFile(anunciosFilePath, JSON.stringify(anuncios), (err) => {
+			if (err) {
+				return res.status(500).send('Error guardando estado');
+			}
+			res.redirect('/anuncios/' + id);
+		});
+	});
+};
+// GET /anuncios/:id/editar
+exports.getEditarAnuncio = (req, res, next) => {
+	const id = req.params.id;
+	Anuncio.getById(id, (anuncio) => {
+		if (!anuncio) {
+			return res.status(404).send('Anuncio no encontrado');
+		}
+		res.render("anuncios/editar", {
+			title: "Editar Anuncio",
+			anuncio,
+			id,
+			error: null
+		});
+	});
+};
+
+// POST /anuncios/:id
+exports.postEditarAnuncio = (req, res, next) => {
+	const id = req.params.id;
+	const { titulo, descripcion, precio, estado } = req.body;
+	if (!titulo || !descripcion || !precio || !estado) {
+		// Validación mínima
+		return Anuncio.getById(id, (anuncio) => {
+			res.render("anuncios/editar", {
+				title: "Editar Anuncio",
+				anuncio,
+				id,
+				error: "Todos los campos son obligatorios."
+			});
+		});
+	}
+	Anuncio.getAll((anuncios) => {
+		const idx = anuncios.findIndex(a => String(a.id) === String(id));
+		if (idx === -1) {
+			return res.status(404).send('Anuncio no encontrado');
+		}
+		anuncios[idx].Titulo = titulo;
+		anuncios[idx].Descripcion = descripcion;
+		anuncios[idx].Precio = precio;
+		anuncios[idx].Estado = estado;
+		const fs = require('fs');
+		const path = require('path');
+		const anunciosFilePath = path.join(__dirname, "..", "data", "anuncios.json");
+		fs.writeFile(anunciosFilePath, JSON.stringify(anuncios), (err) => {
+			if (err) {
+				return res.status(500).send('Error guardando anuncio');
+			}
+			res.redirect('/anuncios/' + id);
+		});
+	});
+};
+// GET /anuncios/:id
+exports.getAnuncioDetalle = (req, res, next) => {
+	const id = req.params.id;
+	Anuncio.getById(id, (anuncio) => {
+		if (!anuncio) {
+			return res.status(404).send('Anuncio no encontrado');
+		}
+		res.render("anuncios/detalle", {
+			title: "Detalle del Anuncio",
+			anuncio,
+			id
+		});
+	});
+};
 const Anuncio = require("../models/anuncios");
 
 exports.getHome = (req, res, next) => {
@@ -21,14 +107,9 @@ exports.getAnuncios = (req, res, next) => {
 		if (estado) {
 			filtrados = filtrados.filter(a => a.Estado && a.Estado.toLowerCase() === estado.toLowerCase());
 		}
-		const resultado = filtrados.map(a => ({
-			Titulo: a.Titulo,
-			Categoria: a.Categoria,
-			Precio: a.Precio,
-			Estado: a.Estado
-		}));
 		res.render("anuncios/lista", {
-			anuncios: resultado,
+			title: "Listado de Anuncios",
+			anuncios: filtrados,
 			categoria: categoria || '',
 			estado: estado || ''
 		});

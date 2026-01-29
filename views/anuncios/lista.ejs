@@ -1,4 +1,6 @@
+
 <%- include('../includes/header') %>
+<%- include('../includes/navigator') %>
 
 <h1>Listado de Anuncios</h1>
 
@@ -46,6 +48,7 @@
         <td><%= anuncio.Categoria %></td>
         <td><%= anuncio.Precio %> €</td>
         <td><%= anuncio.Estado %></td>
+        <td><a href="/anuncios/<%= anuncio.id %>">Ver detalle</a></td>
       </tr>
     <% }) %>
   </tbody>
