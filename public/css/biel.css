@@ -246,6 +246,83 @@ select {
     box-shadow: 0 4px 12px rgba(124, 77, 255, 0.15);
 }
 
+/* ===== ERROR PAGE (404) ===== */
+.error-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    padding: 40px 20px;
+}
+
+.error-content {
+    text-align: center;
+    background-color: #121726;
+    border-radius: 12px;
+    padding: 60px 40px;
+    max-width: 600px;
+    box-shadow: 0 8px 32px rgba(124, 77, 255, 0.2);
+    border: 2px solid #7C4DFF;
+}
+
+.error-code {
+    font-size: 6em;
+    font-weight: 900;
+    color: #7C4DFF;
+    margin: 0;
+    text-shadow: 0 0 30px rgba(124, 77, 255, 0.5);
+    line-height: 1;
+}
+
+.error-content h2 {
+    font-size: 2.2em;
+    color: #F2F4F8;
+    margin: 20px 0 15px 0;
+}
+
+.error-content p {
+    color: #9AA0C7;
+    font-size: 1.05em;
+    margin-bottom: 30px;
+}
+
+.error-suggestions {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 2px solid rgba(124, 77, 255, 0.3);
+}
+
+.error-suggestions p {
+    color: #7C4DFF;
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-size: 1em;
+}
+
+.error-suggestions ul {
+    list-style: none;
+    padding: 0;
+}
+
+.error-suggestions li {
+    margin: 12px 0;
+    color: #9AA0C7;
+}
+
+.error-suggestions li a {
+    color: #3B82F6;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.error-suggestions li a:hover {
+    color: #7C4DFF;
+    background-color: rgba(124, 77, 255, 0.1);
+    text-decoration: none;
+}
+
 /* ===== RESPONSIVO ===== */
 @media (max-width: 768px) {
     h1 {
@@ -272,6 +349,18 @@ select {
     button.primary-btn {
         width: 100%;
         margin-right: 0;
+    }
+
+    .error-code {
+        font-size: 4em;
+    }
+
+    .error-content {
+        padding: 40px 25px;
+    }
+
+    .error-content h2 {
+        font-size: 1.8em;
     }
 }
 nav a:hover {
