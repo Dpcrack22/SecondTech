@@ -1,68 +1,66 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
+const anunciosFilePath = path.join(__dirname, "..", "data", "anuncios.json");
 
-const filePath = path.join(__dirname,"..","data","anuncios.json");
-
-
-
-class Videogame {
-    constructor(id, title, developer, genre, release_year, description, image){
-        this.id = id;
-        this.title = title;
-        this.developer = developer;
-        this.genre = genre;
-        this.release_year = release_year;
-        this.description = description;
-        this.image = image;
+class Anuncio {
+    constructor(titulo, descripcion, precio, contacto) {
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.contacto = contacto;
     }
-    
+
     save() {
-        fs.readFile(filePath,(err,data)=>{
-            let games = [];
-            if(!err){
-                games = JSON.parse(data);
+        fs.readFile(anunciosFilePath, (err, data) => {
+            let anuncios = [];
+            if (!err) {
+                anuncios = JSON.parse(data);
             }
-            games.push(this);
-            
-            fs.writeFile(filePath, JSON.stringify(games), (err)=>{
-                console.log(err);
-            })
-            
+            anuncios.push(this);
+            fs.writeFile(anunciosFilePath, JSON.stringify(anuncios), (err) => {
+                if (err) {
+                    console.error("Error saving anuncio:", err);
+                }
+            });
+        });
+    }
+
+    static getAll(callback) {
+        fs.readFile(anunciosFilePath, (err, data) => {
+            let anuncios = [];
+            if (!err) {
+                anuncios = JSON.parse(data);
+            }
+
+            return callback(anuncios);
         })
     }
 
-    static getAll(cb){
-         fs.readFile(filePath,(err,data)=>{
-            let games = [];
-            if(!err){
-                games = JSON.parse(data);
+    static getById(id, callback) {
+        fs.readFile(anunciosFilePath, (err, data) => {
+            let anuncios = [];
+            if (!err) {
+                anuncios = JSON.parse(data);
             }
-            return cb(games);
-        });
-
-    }
-
-    static getLastId(cb){
-        fs.readFile(filePath,(err,data)=>{
-            let games = [];
-            if(!err){
-                games = JSON.parse(data);
-            }
-            return cb(games[games.length - 1].id);
+            const anuncio = anuncios[id];
+            return callback(anuncio);
         });
     }
 
-    static getGameById(id,cb){
-        fs.readFile(filePath,(err,data)=>{
-            let games = [];
-            if(!err){
-                games = JSON.parse(data);
+    static deleteById(id) {
+        fs.readFile(anunciosFilePath, (err, data) => {
+            let anuncios = [];
+            if (!err) {
+                anuncios = JSON.parse(data);
             }
-            return cb(games.find((g) => g.id === id));
+            anuncios.splice(id, 1);
+            fs.writeFile(anunciosFilePath, JSON.stringify(anuncios), (err) => {
+                if (err) {
+                    console.error("Error deleting anuncio:", err);
+                }
+            });
         });
     }
-
 }
 
-
-module.exports = Videogame;
+module.exports = Anuncio;
