@@ -1,17 +1,22 @@
 <%- include("includes/header") %>
-</head>
 <%- include("includes/navigator") %>
-    <h1>Second Tech</h1>
-    <!-- Necesito hacer una breve descripción de una pagina que trata de anuncios de productos tecnologicos
-     principalmente funciona como un wallapop-->
-    <p>Bienvenido a Second Tech, la plataforma donde puedes comprar y vender productos 
+
+    <section class="home-section">
+        <h1>Second Tech</h1>
+        <p>Bienvenido a Second Tech, la plataforma donde puedes comprar y vender productos 
         tecnológicos de segunda mano de manera fácil y segura. Explora una amplia variedad de anuncios, 
         desde smartphones hasta laptops, y encuentra las mejores ofertas cerca de ti. 
         ¡Únete a nuestra comunidad y comienza a descubrir increíbles oportunidades hoy mismo!
-    </p>
-    <p>¿Tienes algo que vender? Publica tu anuncio y encuentra compradores interesados en tus productos tecnológicos de segunda mano.</p>
-    <button onclick="location.href='/anuncios'">Listar Anuncios</button>
-    <button onclick="location.href='/anuncios/nuevo'">Publicar Anuncio</button>
+        </p>
+        <p>¿Tienes algo que vender? Publica tu anuncio y encuentra compradores interesados en tus productos tecnológicos de segunda mano.</p>
+        
+        <div class="home-buttons">
+            <button onclick="location.href='/anuncios'" class="primary-btn">📚 Ver Anuncios</button>
+            <button onclick="location.href='/anuncios/nuevo'" class="primary-btn">✏️ Publicar Anuncio</button>
+        </div>
+    </section>
+
+</main>
 </body>
 </html>
     
