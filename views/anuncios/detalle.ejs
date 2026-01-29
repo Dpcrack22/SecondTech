@@ -10,7 +10,7 @@
   <li><strong>Categoría:</strong> <%= anuncio.Categoria || anuncio.categoria %></li>
   <li><strong>Precio:</strong> <%= anuncio.Precio || anuncio.precio %> €</li>
   <li><strong>Contacto:</strong> <%= anuncio.Contacto || anuncio.contacto %></li>
-  <li><strong>Fecha de publicación:</strong> <%= anuncio.Fecha || anuncio.fecha || 'No disponible' %></li>
+  <li><strong>Fecha de publicación:</strong> <%= anuncio.Fecha || anuncio.fecha || (anuncio.createdAt ? new Date(anuncio.createdAt).toLocaleDateString('es-ES') : 'No disponible') %></li>
   <li>
     <strong>Estado:</strong> <%= anuncio.Estado || anuncio.estado %>
     <form method="post" action="/anuncios/<%= id %>/cambiar-estado" style="display:inline; margin-left:10px;">

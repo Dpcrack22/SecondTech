@@ -3,12 +3,13 @@ const path = require("path");
 const anunciosFilePath = path.join(__dirname, "..", "data", "anuncios.json");
 
 class Anuncio {
-    constructor(titulo, precio, categoria, estado) {
+    constructor(titulo, descripcion, precio, categoria, estado, contacto) {
         this.Titulo = titulo;
+        this.Descripcion = descripcion;
         this.Precio = precio;
         this.Categoria = categoria;
         this.Estado = estado;
-        
+        this.Contacto = contacto;
     }
 
     save() {
@@ -17,6 +18,11 @@ class Anuncio {
             if (!err) {
                 anuncios = JSON.parse(data);
             }
+            // Asignar id único
+            let maxId = anuncios.reduce((max, a) => a.id && a.id > max ? a.id : max, 0);
+            this.id = maxId + 1;
+            // Asignar createdAt
+            this.createdAt = new Date().toISOString();
             anuncios.push(this);
             fs.writeFile(anunciosFilePath, JSON.stringify(anuncios), (err) => {
                 if (err) {

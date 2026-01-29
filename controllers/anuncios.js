@@ -108,8 +108,6 @@ exports.getAnuncios = (req, res, next) => {
 			filtrados = filtrados.filter(a => a.Estado && a.Estado.toLowerCase() === estado.toLowerCase());
 		}
 		res.render("anuncios/lista", {
-            title: "Listado de Anuncios",
-			anuncios: resultado,
 			title: "Listado de Anuncios",
 			anuncios: filtrados,
 			categoria: categoria || '',
@@ -125,12 +123,20 @@ exports.getNuevoAnuncio = (req, res, next) => {
 
 // POST /anuncios/nuevo
 exports.postNuevoAnuncio = (req, res, next) => {
+	const { titulo, descripcion, precio, categoria, estado, contacto } = req.body;
+	// Validación mínima de email
+	const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+	if (!titulo || !descripcion || !precio || !categoria || !estado || !contacto || !emailRegex.test(contacto)) {
+		return res.render("anuncios/nuevo", { title: "Nuevo Anuncio", error: "Todos los campos son obligatorios y el correo debe ser válido." });
+	}
 	const anuncioNuevo = new Anuncio(
-		req.body.titulo,
-		req.body.precio,
-		req.body.categoria,
-		req.body.estado
+		titulo,
+		descripcion,
+		precio,
+		categoria,
+		estado,
+		contacto
 	);
-   	anuncioNuevo.save();
-    res.redirect("/anuncios");
+	anuncioNuevo.save();
+	res.redirect("/anuncios");
 };
