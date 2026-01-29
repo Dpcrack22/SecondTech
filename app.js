@@ -21,7 +21,7 @@ app.use(games);
 app.use(deleteGame);
 app.use(addCart);
 */
-const anuncios = require("./routes/anuncios");
+const anuncios = require("./routes/routes");
 
 const app = express();
 
