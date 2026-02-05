@@ -1,0 +1,70 @@
+/*
+Paleta de colores:
+Fondo: #0B0D13
+Cards/secciones: #121726
+Texto principal: #F2F4F8
+Texto secundario: #9AA0C7
+Color principal (botones/acento): #7C4DFF
+Hover/activo: #5A36CC
+Detalle azul (links/focus): #3B82F6
+*/
+
+body {
+  background-color: #0B0D13;
+  color: #F2F4F8;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.card, .section {
+  background: #121726;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(12,13,19,0.2);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+
+
+.secondary {
+  color: #9AA0C7;
+}
+
+a {
+  color: #3B82F6;
+  text-decoration: none;
+}
+a:hover, a:focus {
+  color: #7C4DFF;
+}
+
+button, .btn {
+  background: #7C4DFF;
+  color: #F2F4F8;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+button:hover, .btn:hover, button:active, .btn:active {
+  background: #5A36CC;
+}
+
+input, select, textarea {
+  background: #121726;
+  border: 1px solid #3B82F6;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 1rem;
+}
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid #3B82F6;
+}
+
+::-webkit-input-placeholder { color: #9AA0C7; }
+::-moz-placeholder { color: #9AA0C7; }
+:-ms-input-placeholder { color: #9AA0C7; }
+::placeholder { color: #9AA0C7; }

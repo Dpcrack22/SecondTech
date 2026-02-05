@@ -1,11 +1,18 @@
 <%- include('../includes/header') %>
 <%- include('../includes/navigator') %>
 
+<div class="anuncios-editar main-centered container">
 <h1>Editar Anuncio</h1>
 <% if (error) { %>
   <p style="color:red"><%= error %></p>
 <% } %>
 <form method="post" action="/anuncios/<%= id %>/editar">
+  <label>Imagen actual:<br>
+    <img src="/IMG/<%= anuncio.Imagen ? anuncio.Imagen : 'default.jpg' %>" alt="Imagen del producto" style="max-width:200px;display:block;margin-bottom:1rem;">
+  </label><br>
+  <label>Reemplazar imagen (enlace):<br>
+    <input type="text" name="imagen" placeholder="https://...">
+  </label><br>
   <label>Título:<br>
     <input type="text" name="titulo" value="<%= anuncio.Titulo %>" required>
   </label><br>
@@ -26,3 +33,4 @@
 </form>
 <a href="/anuncios/<%= id %>">Volver al detalle</a>
 <%- include('../includes/footer') %>
+</div>

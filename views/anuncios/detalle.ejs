@@ -1,6 +1,9 @@
 <%- include('../includes/header') %>
 <%- include('../includes/navigator') %>
 
+
+<div class="anuncios-detalle main-centered container">
+<img src="/IMG/<%= anuncio.Imagen ? anuncio.Imagen : 'default.jpg' %>" alt="Imagen del producto" style="max-width:300px;display:block;margin:0 auto 2rem auto;">
 <h1>Detalle del Anuncio</h1>
 
 
@@ -25,4 +28,6 @@
 
 <a href="/anuncios/<%= id %>/editar">Editar anuncio</a>
 
+
 <%- include('../includes/footer') %>
+</div>
