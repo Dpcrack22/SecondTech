@@ -2,10 +2,10 @@
 <%- include('../includes/header') %>
 <%- include('../includes/navigator') %>
 
-<div class="anuncios-lista main-centered container">
+<div class="anuncios-lista main-centered container card">
 <h1>Listado de Anuncios</h1>
 
-<form method="get" action="/anuncios">
+<form method="get" action="/anuncios" class="filtros-form">
   <label for="categoria">Categoría:</label>
   <select name="categoria" id="categoria">
     <option value="" <%= !categoria ? 'selected' : '' %>>Todas</option>
@@ -30,33 +30,30 @@
   <button type="submit">Filtrar</button>
 </form>
 
-<table>
-  <thead>
-    <tr>
-      <th>Imagen</th>
-      <th>Título</th>
-      <th>Categoría</th>
-      <th>Precio</th>
-      <th>Estado</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if (anuncios.length === 0) { %>
-      <tr><td colspan="4">No hay anuncios para mostrar.</td></tr>
-    <% } %>
-    <% anuncios.forEach(function(anuncio) { %>
-      <tr>
-        <td><img src="/IMG/<%= anuncio.Imagen ? anuncio.Imagen : 'default.jpg' %>" alt="Imagen del producto" style="max-width:80px;"></td>
-        <td><%= anuncio.Titulo %></td>
-        <td><%= anuncio.Categoria %></td>
-        <td><%= anuncio.Precio %> €</td>
-        <td><%= anuncio.Estado %></td>
-        <td><a href="/anuncios/<%= anuncio.id %>">Ver detalle</a></td>
-      </tr>
-    <% }) %>
-  </tbody>
-</table>
-
-
-<%- include('../includes/footer') %>
+<div class="anuncios-grid">
+  <% if (anuncios.length === 0) { %>
+    <div class="anuncio-empty">No hay anuncios para mostrar.</div>
+  <% } %>
+  <% anuncios.forEach(function(anuncio) { %>
+    <article class="anuncio-card">
+      <div class="anuncio-media">
+        <img src="<%= anuncio.Imagen ? anuncio.Imagen : '/img/default.jpg' %>"
+             alt="Imagen del producto"
+             onerror="this.onerror=null;this.src='/img/default.jpg';">
+      </div>
+      <div class="anuncio-body">
+        <div class="anuncio-info">
+          <h2 class="anuncio-title"><%= anuncio.Titulo %></h2>
+          <p class="anuncio-price"><%= anuncio.Precio %> €</p>
+        </div>
+        <div class="anuncio-tags">
+          <span class="tag tag-category"><%= anuncio.Categoria %></span>
+          <span class="tag tag-status"><%= anuncio.Estado %></span>
+        </div>
+      </div>
+      <div class="anuncio-actions">
+        <a href="/anuncios/<%= anuncio.id %>" class="btn">Ver detalle</a>
+      </div>
+    </article>
+  <% }) %>
 </div>
