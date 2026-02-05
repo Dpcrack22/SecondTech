@@ -3,6 +3,11 @@
 
     <div class="form-container">
         <h1>Publicar Nuevo Anuncio</h1>
+
+        <% if (typeof error !== 'undefined' && error) { %>
+            <div class="form-error"><%= error %></div>
+        <% } %>
+
         <form method="post" action="/anuncios/nuevo">
             <div class="form-group">
                 <label for="titulo">Título:</label>
@@ -24,6 +29,16 @@
                     <option value="deportes">⚽ Deportes</option>
                     <option value="otros">📦 Otros</option>
                 </select>
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" placeholder="Describe el producto..." rows="3" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="contacto">Correo de contacto:</label>
+                <input type="email" id="contacto" name="contacto" placeholder="tucorreo@ejemplo.com" required>
             </div>
 
             <div class="form-group">
