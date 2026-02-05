@@ -38,7 +38,7 @@ exports.getEditarAnuncio = (req, res, next) => {
 // POST /anuncios/:id
 exports.postEditarAnuncio = (req, res, next) => {
 	const id = req.params.id;
-	const { titulo, descripcion, precio, estado } = req.body;
+	const { titulo, descripcion, precio, estado, imagen } = req.body;
 	if (!titulo || !descripcion || !precio || !estado) {
 		// Validación mínima
 		return Anuncio.getById(id, (anuncio) => {
@@ -59,6 +59,9 @@ exports.postEditarAnuncio = (req, res, next) => {
 		anuncios[idx].Descripcion = descripcion;
 		anuncios[idx].Precio = precio;
 		anuncios[idx].Estado = estado;
+		if (typeof imagen !== 'undefined' && imagen.trim()) {
+			anuncios[idx].Imagen = imagen.trim();
+		}
 		const fs = require('fs');
 		const path = require('path');
 		const anunciosFilePath = path.join(__dirname, "..", "data", "anuncios.json");
@@ -123,19 +126,21 @@ exports.getNuevoAnuncio = (req, res, next) => {
 
 // POST /anuncios/nuevo
 exports.postNuevoAnuncio = (req, res, next) => {
-	const { titulo, descripcion, precio, categoria, estado, contacto } = req.body;
+	const { titulo, descripcion, precio, categoria, estado, contacto, imagen } = req.body;
 	// Validación mínima de email
 	const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 	if (!titulo || !descripcion || !precio || !categoria || !estado || !contacto || !emailRegex.test(contacto)) {
 		return res.render("anuncios/nuevo", { title: "Nuevo Anuncio", error: "Todos los campos son obligatorios y el correo debe ser válido." });
 	}
+	const imgValue = imagen && imagen.trim() ? imagen.trim() : 'default.jpg';
 	const anuncioNuevo = new Anuncio(
 		titulo,
 		descripcion,
 		precio,
 		categoria,
 		estado,
-		contacto
+		contacto,
+		imgValue
 	);
 	anuncioNuevo.save();
 	res.redirect("/anuncios");

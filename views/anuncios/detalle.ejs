@@ -1,6 +1,9 @@
 <%- include('../includes/header') %>
 <%- include('../includes/navigator') %>
 
+
+<div class="anuncios-detalle main-centered container card">
+<img src="<%= anuncio.Imagen ? anuncio.Imagen : '/img/default.jpg' %>" alt="Imagen del producto" style="max-width:220px;max-height:220px;display:block;margin:0 auto 2rem auto;border-radius:12px;box-shadow:0 2px 8px #0002;" onerror="this.onerror=null;this.src='/img/default.jpg';">
 <h1>Detalle del Anuncio</h1>
 
 
@@ -23,6 +26,11 @@
   </li>
 </ul>
 
-<a href="/anuncios/<%= id %>/editar">Editar anuncio</a>
+<div class="detalle-actions">
+  <a href="/anuncios/<%= id %>/editar" class="btn">Editar anuncio</a>
+  <a href="/anuncios" class="btn-secondary">Volver atras</a>
+</div>
+
 
 <%- include('../includes/footer') %>
+</div>

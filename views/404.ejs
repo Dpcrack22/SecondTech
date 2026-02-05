@@ -1,8 +1,22 @@
 <%- include('includes/header') %>
 <%- include('includes/navigator') %>
 
-<h1>Página no encontrada (404)</h1>
-<p>La página que buscas no existe o ha sido movida.</p>
-<a href="/">Volver a la página principal</a>
+    <section class="error-container">
+        <div class="error-content">
+            <h1 class="error-code">404</h1>
+            <h2>Página no encontrada</h2>
+            <p>Lo sentimos, la página que buscas no existe o ha sido movida.</p>
+            
+            <div class="error-suggestions">
+                <p>¿Qué puedes hacer?</p>
+                <ul>
+                    <li>🏠 <a href="/">Volver a la página principal</a></li>
+                    <li>📋 <a href="/anuncios">Ver todos los anuncios</a></li>
+                    <li>➕ <a href="/anuncios/nuevo">Publicar un nuevo anuncio</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
+</main>
 <%- include('includes/footer') %>

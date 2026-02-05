@@ -1,28 +1,44 @@
 <%- include('../includes/header') %>
 <%- include('../includes/navigator') %>
 
+<div class="anuncios-editar main-centered container card">
 <h1>Editar Anuncio</h1>
 <% if (error) { %>
-  <p style="color:red"><%= error %></p>
+  <p class="form-error"><%= error %></p>
 <% } %>
 <form method="post" action="/anuncios/<%= id %>/editar">
-  <label>Título:<br>
+  <div class="form-group">
+    <label>Imagen actual</label>
+    <img src="<%= anuncio.Imagen ? anuncio.Imagen : '/img/default.jpg' %>" alt="Imagen del producto" class="img-preview" onerror="this.onerror=null;this.src='/img/default.jpg';">
+  </div>
+  <div class="form-group">
+    <label>Reemplazar imagen (enlace)</label>
+    <input type="text" name="imagen" placeholder="https://...">
+  </div>
+  <div class="form-group">
+    <label>Titulo</label>
     <input type="text" name="titulo" value="<%= anuncio.Titulo %>" required>
-  </label><br>
-  <label>Descripción:<br>
+  </div>
+  <div class="form-group">
+    <label>Descripcion</label>
     <textarea name="descripcion" required><%= anuncio.Descripcion || '' %></textarea>
-  </label><br>
-  <label>Precio:<br>
+  </div>
+  <div class="form-group">
+    <label>Precio</label>
     <input type="number" name="precio" value="<%= anuncio.Precio %>" required>
-  </label><br>
-  <label>Estado:<br>
+  </div>
+  <div class="form-group">
+    <label>Estado</label>
     <select name="estado" required>
       <option value="disponible" <%= anuncio.Estado === 'disponible' ? 'selected' : '' %>>Disponible</option>
       <option value="reservado" <%= anuncio.Estado === 'reservado' ? 'selected' : '' %>>Reservado</option>
       <option value="vendido" <%= anuncio.Estado === 'vendido' ? 'selected' : '' %>>Vendido</option>
     </select>
-  </label><br>
-  <button type="submit">Guardar cambios</button>
+  </div>
+  <div class="form-actions">
+    <button type="submit" class="primary-btn">Guardar cambios</button>
+    <a href="/anuncios/<%= id %>" class="btn-secondary">Volver al detalle</a>
+  </div>
 </form>
-<a href="/anuncios/<%= id %>">Volver al detalle</a>
 <%- include('../includes/footer') %>
+</div>
